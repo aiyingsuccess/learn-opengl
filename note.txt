@@ -1,0 +1,17 @@
+1 Sending data to the graphics card from the CPU is relatively slow, so wherever we can, we try to send as much data as possible at once. Once the data is in the graphics card's memory the vertex shader has almost instant access to the vertices making it extremely fast
+
+
+2 glBufferData is a function specifically targeted to copy user-defined data into the currently bound buffer
+
+3 Each vertex attribute takes its data from memory managed by a VBO and which VBO it takes its data from (you can have multiple VBOs) is determined by the VBO currently bound to GL_ARRAY_BUFFER when calling glVertexAttribPointer. 
+
+Now that we specified how OpenGL should interpret the vertex data we should also enable the vertex attribute with glEnableVertexAttribArray giving the vertex attribute location as its argument; vertex attributes are disabled by default. 
+
+4 VAO:
+A vertex array object stores the following:
+Calls to glEnableVertexAttribArray or glDisableVertexAttribArray.
+Vertex attribute configurations via glVertexAttribPointer.
+Vertex buffer objects associated with vertex attributes by calls to glVertexAttribPointer.
+
+5 To use a VAO, 
+all you have to do is bind the VAO using glBindVertexArray. From that point on we should bind/configure the corresponding VBO(s) and attribute pointer(s) and then unbind the VAO for later use. 
