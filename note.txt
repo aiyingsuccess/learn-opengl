@@ -1,6 +1,5 @@
 1 Sending data to the graphics card from the CPU is relatively slow, so wherever we can, we try to send as much data as possible at once. Once the data is in the graphics card's memory the vertex shader has almost instant access to the vertices making it extremely fast
 
-
 2 glBufferData is a function specifically targeted to copy user-defined data into the currently bound buffer
 
 3 Each vertex attribute takes its data from memory managed by a VBO and which VBO it takes its data from (you can have multiple VBOs) is determined by the VBO currently bound to GL_ARRAY_BUFFER when calling glVertexAttribPointer. 
@@ -15,3 +14,23 @@ Vertex buffer objects associated with vertex attributes by calls to glVertexAttr
 
 5 To use a VAO, 
 all you have to do is bind the VAO using glBindVertexArray. From that point on we should bind/configure the corresponding VBO(s) and attribute pointer(s) and then unbind the VAO for later use. 
+
+6 glEnableVertexAttribArray giving the vertex attribute location as its argument; vertex attributes are disabled by default.
+
+Uniform:
+glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+
+7 Uniforms are another way to pass data from our application on the CPU to the shaders on the GPU, but uniforms are slightly different compared to vertex attributes. Since uniforms are global variables, we can define them in any shader.
+
+8 If you declare a uniform that isn't used anywhere in your GLSL code the compiler will silently remove the variable from the compiled version which is the cause for several frustrating errors; keep this in mind!
+
+9 uniforms are a useful tool for setting attributes that might change in render iterations, or for interchanging data between your application and your shaders
+
+10. Keep in mind that the axis that we rotate around should be a unit vector, so be sure to normalize the vector first if you're not rotating around the X, Y, or Z axis.
+
+
+
+
+
+
+
